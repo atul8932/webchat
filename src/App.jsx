@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { UserProvider } from './context/UserContext';
 import { useUser } from './hooks/useUser';
 import LoginScreen from './components/auth/LoginScreen';
@@ -96,6 +97,7 @@ export default function App() {
   return (
     <UserProvider>
       <ChatApp />
+      <SpeedInsights />
     </UserProvider>
   );
 }
