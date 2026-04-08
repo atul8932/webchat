@@ -14,5 +14,5 @@ const firebaseConfig = {
 console.log('[Firebase] Connecting to project:', firebaseConfig.projectId);
 
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+export const db = getFirestore(app, "default"); // CRITICAL: Explicitly targets the 'default' database instead of '(default)'
 export default app;
