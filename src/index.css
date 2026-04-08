@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html, body, #root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #0a0b0d;
+    color: #f0f2f5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(108, 92, 231, 0.3);
+    color: #fff;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-surface-900/70 backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+
+  .glass-panel {
+    @apply bg-surface-900/50 backdrop-blur-lg border border-white/5;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 rounded-xl font-semibold text-white text-sm
+      bg-gradient-to-r from-brand-400 to-brand-600
+      hover:from-brand-300 hover:to-brand-500
+      transition-all duration-200 hover:shadow-lg hover:shadow-brand-600/30
+      active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply px-4 py-2 rounded-xl font-medium text-surface-100 text-sm
+      bg-surface-800/60 border border-white/5
+      hover:bg-surface-700/60 hover:text-white
+      transition-all duration-200 active:scale-[0.98];
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.1) transparent;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
