@@ -8,7 +8,6 @@ import {
   serverTimestamp,
   query,
   where,
-  orderBy,
   limit,
   onSnapshot,
   getDocs,
@@ -84,11 +83,12 @@ export function subscribeToIncomingRequests(userId, callback) {
   const q = query(
     collection(db, CHAT_REQUESTS),
     where('toUserId', '==', userId),
-    where('status', '==', 'pending'),
-    orderBy('createdAt', 'desc')
+    where('status', '==', 'pending')
   );
   return onSnapshot(q, (snap) => {
-    callback(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
+    const docs = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    docs.sort((a, b) => (b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0));
+    callback(docs);
   });
 }
 
@@ -99,11 +99,12 @@ export function subscribeToOutgoingRequests(userId, callback) {
   const q = query(
     collection(db, CHAT_REQUESTS),
     where('fromUserId', '==', userId),
-    orderBy('createdAt', 'desc'),
     limit(30)
   );
   return onSnapshot(q, (snap) => {
-    callback(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
+    const docs = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    docs.sort((a, b) => (b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0));
+    callback(docs);
   });
 }
 
@@ -115,11 +116,12 @@ export function subscribeToOutgoingRequests(userId, callback) {
 export function subscribeToPrivateChats(userId, callback) {
   const q = query(
     collection(db, PRIVATE_CHATS),
-    where('participants', 'array-contains', userId),
-    orderBy('lastMessageAt', 'desc')
+    where('participants', 'array-contains', userId)
   );
   return onSnapshot(q, (snap) => {
-    callback(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
+    const docs = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    docs.sort((a, b) => (b.lastMessageAt?.toMillis() || 0) - (a.lastMessageAt?.toMillis() || 0));
+    callback(docs);
   });
 }
 
@@ -152,10 +154,11 @@ export function subscribeToChatMessages(chatId, callback) {
   const q = query(
     collection(db, MESSAGES),
     where('chatId', '==', chatId),
-    orderBy('timestamp', 'asc'),
     limit(200)
   );
   return onSnapshot(q, (snap) => {
-    callback(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
+    const docs = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    docs.sort((a, b) => (a.timestamp?.toMillis() || 0) - (b.timestamp?.toMillis() || 0));
+    callback(docs);
   });
 }
