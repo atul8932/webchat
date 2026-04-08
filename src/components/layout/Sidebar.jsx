@@ -31,7 +31,7 @@ export default function Sidebar({ activeView, onSelectPublic, activeChat, onSele
                   d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
             </div>
-            <span className="text-white font-bold text-sm tracking-tight">WebChat</span>
+            <span className="text-white font-bold text-sm tracking-tight">NitJsrChats</span>
             <div className="ml-auto flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-800/80 border border-green-500/20 text-[11px] text-green-400 font-medium">
               <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse border border-green-500/50" />
               {onlineCount} online
