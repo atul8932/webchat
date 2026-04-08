@@ -46,7 +46,7 @@ function ChatApp() {
   const showChat = mobilePanel === 'chat';
 
   return (
-    <div className="flex h-screen bg-surface-950 overflow-hidden">
+    <div className="flex h-[100dvh] bg-surface-950 overflow-hidden">
       {/* Background gradient orbs */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-brand-600/10 rounded-full blur-[150px] -translate-x-1/2 -translate-y-1/2" />

@@ -32,9 +32,9 @@ export default function Sidebar({ activeView, onSelectPublic, activeChat, onSele
               </svg>
             </div>
             <span className="text-white font-bold text-sm tracking-tight">WebChat</span>
-            <div className="ml-auto flex items-center gap-1 text-[11px] text-green-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-              {onlineCount}
+            <div className="ml-auto flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-800/80 border border-green-500/20 text-[11px] text-green-400 font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse border border-green-500/50" />
+              {onlineCount} online
             </div>
           </div>
 
